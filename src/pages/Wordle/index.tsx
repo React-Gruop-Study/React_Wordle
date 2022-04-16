@@ -10,7 +10,7 @@ const index = () => {
     setShowAlert(true);
     setTimeout(() => {
       setShowAlert(false);
-    }, 2990);
+    }, 2980);
   };
   return (
     <>
