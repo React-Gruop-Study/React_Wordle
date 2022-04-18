@@ -11,7 +11,7 @@ export const AlertWithoutButton = styled.p`
   border-radius: 8px;
   font-size: 1rem;
   font-weight: bold;
-  animation: fade 3s linear;
+  animation: fade 2s linear;
 
   @keyframes fade {
     0% {
