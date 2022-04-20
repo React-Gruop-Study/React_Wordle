@@ -4,6 +4,7 @@ import Board from '../../components/Board';
 import Keyboard from '../../components/Keyboard';
 import {
   ALERT_MESSAGE,
+  EMPTY_ROW_MAX_LENGTH,
   INCORRECT,
   keyboardArray,
   WORD_MAX_LENGTH,
@@ -37,7 +38,7 @@ const index = () => {
     const wordsList = word.split('');
     const questionList = INCORRECT.toUpperCase().split('');
     setWords(wordsList);
-    if (recentWords.length >= 5) {
+    if (recentWords.length >= EMPTY_ROW_MAX_LENGTH) {
       setAlertMessage(INCORRECT.toUpperCase());
       setShowAlert(true);
       return;
