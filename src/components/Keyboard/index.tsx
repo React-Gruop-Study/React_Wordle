@@ -34,6 +34,7 @@ const index = ({
     <Grid>
       <Row>
         {first.map((alphabet) => (
+          // onClick Type안맞는 에러, 동작은하지만 수정 필요
           <KeyboardButton key={alphabet} onClick={onClickKeyboard}>
             {alphabet}
           </KeyboardButton>
