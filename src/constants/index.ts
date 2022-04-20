@@ -11,5 +11,7 @@ export const ALERT_MESSAGE = {
 };
 
 export const WORD_MAX_LENGTH = 5;
+export const ROW_MAX_LENGTH = 6;
+export const EMPTY_ROW_MAX_LENGTH = 5;
 
-export const INCORRECT = 'apple';
+export const INCORRECT = 'power';
