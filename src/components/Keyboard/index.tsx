@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { keyboardArray } from '../../constants';
-import { Grid, KeyboardEmptySpace, Row } from './index.style';
+import { Grid, KeyboardEmptySpace, Row, KeyboardButton } from './index.style';
 
 interface Props {
   onKeydownWord: (key: string) => void;
@@ -34,23 +34,25 @@ const index = ({
     <Grid>
       <Row>
         {first.map((alphabet) => (
-          <KeyboardEmptySpace key={alphabet} onClick={onClickKeyboard}>
+          <KeyboardButton key={alphabet} onClick={onClickKeyboard}>
             {alphabet}
-          </KeyboardEmptySpace>
+          </KeyboardButton>
         ))}
       </Row>
       <Row>
+        <KeyboardEmptySpace />
         {second.map((alphabet) => (
-          <KeyboardEmptySpace key={alphabet} onClick={onClickKeyboard}>
+          <KeyboardButton key={alphabet} onClick={onClickKeyboard}>
             {alphabet}
-          </KeyboardEmptySpace>
+          </KeyboardButton>
         ))}
+        <KeyboardEmptySpace />
       </Row>
       <Row>
         {third.map((alphabet) => (
-          <KeyboardEmptySpace key={alphabet} onClick={onClickKeyboard}>
+          <KeyboardButton key={alphabet} onClick={onClickKeyboard}>
             {alphabet}
-          </KeyboardEmptySpace>
+          </KeyboardButton>
         ))}
       </Row>
     </Grid>
