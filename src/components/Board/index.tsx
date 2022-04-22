@@ -4,17 +4,17 @@ import { BoardState, EmptyRow as EmptyRowType } from '../../type';
 import EmptyRow from '../EmptyRow';
 import CompletedRow from '../CompletedRow';
 import { EMPTY_ROW_MAX_LENGTH, ROW_MAX_LENGTH } from '../../constants';
+import { v4 as uuidv4 } from 'uuid';
 
 interface Props {
   word: string;
-  words: string[];
   recentWords: string[];
   rowState: BoardState;
 }
 
-const index = ({ word, words, recentWords, rowState }: Props) => {
+const index = ({ word, recentWords, rowState }: Props) => {
   const emptyRow: EmptyRowType[] | null =
-    words.length <= ROW_MAX_LENGTH
+    recentWords.length <= ROW_MAX_LENGTH
       ? Array.from(
           { length: EMPTY_ROW_MAX_LENGTH - recentWords.length },
           () => ['', '', '', '', ''],
@@ -24,11 +24,15 @@ const index = ({ word, words, recentWords, rowState }: Props) => {
     <Wrapper>
       <Grid>
         {recentWords.map((words, index) => (
-          <CompletedRow word={words} rowState={rowState[index]}></CompletedRow>
+          <CompletedRow
+            key={uuidv4()}
+            word={words}
+            rowState={rowState[index]}
+          ></CompletedRow>
         ))}
         <CurrentRow word={word} />
-        {emptyRow?.map((row, index) => (
-          <EmptyRow key={index} emptyRow={row} />
+        {emptyRow?.map((row) => (
+          <EmptyRow key={uuidv4()} emptyRow={row} />
         ))}
       </Grid>
     </Wrapper>
