@@ -32,8 +32,6 @@ const index = () => {
     const questionList = INCORRECT.toUpperCase().split('');
     const result: WordInCorrectState = ['none', 'none', 'none', 'none', 'none'];
     wordsList.forEach((alphabet, index) => {
-      console.log(alphabet);
-      console.log(questionList[index]);
       if (alphabet === questionList[index]) {
         result[index] = 'exact';
       } else if (questionList.includes(alphabet)) {
@@ -52,6 +50,7 @@ const index = () => {
       return;
     }
     checkWords();
+
     // 끝까지 정답을 못맞췄을 경우
     if (recentWords.length >= EMPTY_ROW_MAX_LENGTH) {
       setCorrectState(true);
@@ -78,12 +77,15 @@ const index = () => {
     setWord(word.slice(0, -1));
   };
 
-  const onClickKeyboard = (click: { target: HTMLInputElement }) => {
-    const clickWord = click.target.innerHTML;
-    if (clickWord === 'ENTER') return onKeydownEnter();
-    else if (clickWord === '(X)') return onKeydownBackspace();
-    else if (word.length >= WORD_MAX_LENGTH) return;
-    else setWord((prev) => prev + clickWord);
+  const onClickKeyboard = (alphabet: string) => {
+    switch (alphabet) {
+      case 'Enter':
+        return onKeydownEnter();
+      case '(X)':
+        return onKeydownBackspace();
+    }
+    if (word.length >= WORD_MAX_LENGTH) return;
+    else setWord((prev) => prev + alphabet);
   };
 
   return (
