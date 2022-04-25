@@ -6,7 +6,7 @@ interface Props {
   onKeydownWord: (key: string) => void;
   onKeydownEnter: () => void;
   onKeydownBackspace: () => void;
-  onClickKeyboard: (click: { target: HTMLInputElement }) => void;
+  onClickKeyboard: (alphabet: string) => void;
 }
 
 const [first, second, third] = keyboardArray;
@@ -34,8 +34,10 @@ const index = ({
     <Grid>
       <Row>
         {first.map((alphabet) => (
-          // onClick Type안맞는 에러, 동작은하지만 수정 필요
-          <KeyboardButton key={alphabet} onClick={onClickKeyboard}>
+          <KeyboardButton
+            key={alphabet}
+            onClick={() => onClickKeyboard(alphabet)}
+          >
             {alphabet}
           </KeyboardButton>
         ))}
@@ -43,7 +45,10 @@ const index = ({
       <Row>
         <KeyboardEmptySpace />
         {second.map((alphabet) => (
-          <KeyboardButton key={alphabet} onClick={onClickKeyboard}>
+          <KeyboardButton
+            key={alphabet}
+            onClick={() => onClickKeyboard(alphabet)}
+          >
             {alphabet}
           </KeyboardButton>
         ))}
@@ -51,7 +56,10 @@ const index = ({
       </Row>
       <Row>
         {third.map((alphabet) => (
-          <KeyboardButton key={alphabet} onClick={onClickKeyboard}>
+          <KeyboardButton
+            key={alphabet}
+            onClick={() => onClickKeyboard(alphabet)}
+          >
             {alphabet}
           </KeyboardButton>
         ))}
