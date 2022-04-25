@@ -37,6 +37,7 @@ const index = ({
           <KeyboardButton
             key={alphabet}
             onClick={() => onClickKeyboard(alphabet)}
+            keyboardState='exact'
           >
             {alphabet}
           </KeyboardButton>
@@ -48,6 +49,7 @@ const index = ({
           <KeyboardButton
             key={alphabet}
             onClick={() => onClickKeyboard(alphabet)}
+            keyboardState='close'
           >
             {alphabet}
           </KeyboardButton>
@@ -59,6 +61,7 @@ const index = ({
           <KeyboardButton
             key={alphabet}
             onClick={() => onClickKeyboard(alphabet)}
+            keyboardState='none'
           >
             {alphabet}
           </KeyboardButton>
