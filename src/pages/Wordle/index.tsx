@@ -4,13 +4,17 @@ import Board from '../../components/Board';
 import Keyboard from '../../components/Keyboard';
 import {
   ALERT_MESSAGE,
+  BACKSPACE,
   EMPTY_ROW_MAX_LENGTH,
+  ENTER,
   INCORRECT,
   WORD_MAX_LENGTH,
 } from '../../constants';
 import useCloseAlert from '../../hooks/useCloseAlert';
 import { BoardState, BoxState } from '../../type';
 import { Wrapper } from './index.style';
+import checkInCorrect from '../../util/checkInCorrect';
+import checkUsedWord from '../../util/checkUsedWord';
 
 type WordInCorrectState = [BoxState, BoxState, BoxState, BoxState, BoxState];
 
@@ -26,21 +30,9 @@ const index = () => {
   const [alertMessage, setAlertMessage] = useState('');
   const [recentWords, setRecentWords] = useState<string[]>([]);
   const [correctState, setCorrectState] = useState(false);
-
-  const checkWords = () => {
-    const wordsList = word.split('');
-    const questionList = INCORRECT.toUpperCase().split('');
-    const result: WordInCorrectState = ['none', 'none', 'none', 'none', 'none'];
-    wordsList.forEach((alphabet, index) => {
-      if (alphabet === questionList[index]) {
-        result[index] = 'exact';
-      } else if (questionList.includes(alphabet)) {
-        result[index] = 'close';
-      }
-    });
-    setRowState([...rowState, result]);
-  };
-
+  useEffect(() => {
+    console.log(rowState);
+  }, [rowState]);
   const onKeydownEnter = () => {
     if (correctState) return;
     // 입력한 글자가 모자랄 때
@@ -49,8 +41,7 @@ const index = () => {
       setShowAlert(true);
       return;
     }
-    checkWords();
-
+    setRowState([...rowState, checkInCorrect(checkUsedWord(word))]);
     // 끝까지 정답을 못맞췄을 경우
     if (recentWords.length >= EMPTY_ROW_MAX_LENGTH) {
       setCorrectState(true);
@@ -79,9 +70,9 @@ const index = () => {
 
   const onClickKeyboard = (alphabet: string) => {
     switch (alphabet) {
-      case 'Enter':
+      case ENTER:
         return onKeydownEnter();
-      case '(X)':
+      case BACKSPACE:
         return onKeydownBackspace();
     }
     if (word.length >= WORD_MAX_LENGTH) return;
