@@ -15,3 +15,6 @@ export const ROW_MAX_LENGTH = 6;
 export const EMPTY_ROW_MAX_LENGTH = 5;
 
 export const INCORRECT = 'power';
+
+export const ENTER = 'ENTER';
+export const BACKSPACE = '(X)';
